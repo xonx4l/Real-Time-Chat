@@ -4,15 +4,26 @@ export interface Room {
     chats: Chat[]
 }
 export class InMemoryStore implements store {
+    private store: Map<string, Room>;
     constructor(){
           this.store = new Map<string, Room>();
     }
-    initRoom(){
+    initRoom(roomId: string ){
+        this.store.set(roomId,{
+             roomId,
+             chats:[]
+        });
 
     }
-
-    getChats(room:string, limits:number, offset:number) {
-
+ 
+    // last 50 chats => limit = 50, offset -0
+    // limit = 50, offset - 50
+    getChats(roomId:string, limits:number, offset:number) {
+           const room = this.store.get(roomId);
+           if (!room) {
+                return []
+           }
+           return room.chats.reverse().slice(0, offset).slice(-1 * limit);
     }
 
     addChat(room:string, limit:number, offset:number) {
