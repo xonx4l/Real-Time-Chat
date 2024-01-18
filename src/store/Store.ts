@@ -21,7 +21,6 @@ export class store{
     }
 
     addChat(room:string, limit:number, offset:number) {
-
     }
 
     upvote(room:string, chatId: string){
