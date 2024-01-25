@@ -2,6 +2,7 @@
 type UserId = string;
 
 interface chat {
+    chatId: string;
     userId: string;
     name: string;
     message:string;
